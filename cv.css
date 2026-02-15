@@ -26,3 +26,34 @@ div.texte {
 section:hover{
     margin:10px
 }
+
+.box1 {
+    background-color: #ffcbcb;
+
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding-left: 40px;
+
+    border-bottom-width: 5px;
+    border-bottom-color: rgb(71, 0, 0);
+    border-bottom-style: solid;
+    border-right-width: 5px;
+    border-right-color: rgb(71, 0, 0);
+    border-right-style: solid;
+}
+.box2 {
+    background-color: #aaffd6;
+
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding-left: 40px;
+
+    border-bottom-width: 5px;
+    border-bottom-color: rgb(16, 106, 0);
+    border-bottom-style: solid;
+    border-right-width: 5px;
+    border-right-color: rgb(16, 106, 0);
+    border-right-style: solid;
+}
