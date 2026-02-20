@@ -57,3 +57,27 @@ section:hover{
     border-right-color: rgb(16, 106, 0);
     border-right-style: solid;
 }
+
+body {
+    background-color: #fae3d9;
+}
+
+@media only screen and (max-width: 500px) {
+  html>body {
+    background-color: #bbded6; 
+  }
+}
+
+@media only screen and (min-width: 512px) and (max-width: 1024px) {
+    #cv {
+        grid-template-columns: 30% 30% 40%;
+        grid-template-areas:
+        "my_header my_header my_header"
+        "exp exp edu"
+        "lang lang edu";
+    }
+}
+
+
+
+
