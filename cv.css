@@ -11,8 +11,9 @@ section {
     transition: all 0.1s ease-in-out;
 }
 
-p#my_header {
+#my_header {
     background-color : yellow;
+    grid-area: my_header;
 }
 
 section.title {
@@ -60,24 +61,42 @@ section:hover{
 
 body {
     background-color: #fae3d9;
+    display : grid;
 }
 
-@media only screen and (max-width: 500px) {
-  html>body {
-    background-color: #bbded6; 
-  }
+@media only screen and (max-width: 700px) {
+    html>body {
+        background-color: #bbded6; 
+        grid-template-areas: 
+        "my_header"
+        "profile"
+        "exp"
+        "edu"
+        "lang";
+    }
 }
 
-@media only screen and (min-width: 512px) and (max-width: 1024px) {
-    #cv {
+@media only screen and (min-width: 700px) {
+    html>body {
         grid-template-columns: 30% 30% 40%;
         grid-template-areas:
         "my_header my_header my_header"
-        "exp exp edu"
+        "exp exp profile"
         "lang lang edu";
     }
 }
 
 
-
+#lang {
+    grid-area: lang;
+}
+#exp {
+    grid-area: exp;
+}
+#edu {
+    grid-area: edu;
+}
+#profile {
+    grid-area: profile;
+}
 
