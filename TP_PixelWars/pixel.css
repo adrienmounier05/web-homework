@@ -21,7 +21,7 @@ body {
 
 #grid {
     display: grid;
-    /*TODO: yous js must set grid-template-columns to repeat(n, 1fr)
+    /*TODO: your js must set grid-template-columns to repeat(n, 1fr)
       where n is the number of columns in the grid*/
     /* 80% of the viewport width */
     width: 80vw;

@@ -50,9 +50,29 @@ document.addEventListener("DOMContentLoaded",
             // - sends the /init request to the server for this map id
             // - check the response status code as usual
             // - initialize the map when OK
+            event.preventDefault()
+
+            const r1 = await fetch(`${baseurl()}/init`)
+            const j1 = await r1.json()
+
+            if (j1.hasOwnProperty("data")) {
+                api_key = j1.api_key
+                default_timeout = j1.timeout
+                update_board_from_scratch(j1.nj, j1.ni, j1.data)
+            }
+            for (let t of timers) {
+                window.clearInterval(t)
+            }
+            timers.push(window.setInterval(update_timer, 1000))
+            timers.push(window.setInterval(refresh, 1000))
+            document.getElementById("refresh").addEventListener("click", refresh)
+            
         }
 
         //TODO: and attach it to the Connect button
+
+        document.getElementById("connect-dialog").addEventListener("submit", connect)
+        document.querySelector("#connect-dialog>button").focus()
 
         //TODO:
         // write a function that draws a map inside the griv div
@@ -63,8 +83,38 @@ document.addEventListener("DOMContentLoaded",
         // do not forget to clean up any previously drawn map
         // also give the child div's the 'pixel' class to leverage the default css
         // also don't forget to set the gridTemplateColumns of the grid div
-        function draw_map(ni, nj, data) {
 
+        const board = document.getElementById("board")
+        const board_dlg = document.getElementById("board_dlg")
+
+
+        function draw_map(ni, nj, data) {
+            board_dlg.style.display = "flex"
+
+            while (board.firstChild) {
+                board.removeChild(board.lastChild)
+            }
+
+            board.nj = nj
+            board.ni = ni
+            board.style.gridTemplateColumns = `repeat(${board.nj}, 1fr)`
+            board.style.gridTemplateRows = `repeat(${board.ni},1fr)`
+
+            board_array = new Array()
+            for (let i = 0; i < ni; i++) {
+            for (let j = 0; j < nj; j++) {
+                let c = document.createElement("div")
+                let [r, g, b] = data[i][j]
+                c.classList.add("cell")
+                c.j = j
+                c.i = i
+                c.style.backgroundColor = `rgb(${r},${g},${b})`
+                c.addEventListener("click", on_click_cell)
+                c.addEventListener("mouseover", (event) => showPixelCoordinates(i, j))
+                board.appendChild(c)
+                board_array.push(c)
+                }
+            }
         }
 
         //TMP: to test the previous function: 3 lines and 5 columns
